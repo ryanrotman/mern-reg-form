@@ -17,10 +17,23 @@ const ThirdStep = (props) => {
     useEffect(() => {
         const getCountries = async () => {
             try {
+                setIsLoading(true);
                 const result = await csc.getAllCountries();
-                console.log(result);
-            } catch (error) {}
+                let allCountries = [];
+                allCountries = result?.map(({ isoCode, name }) => ({
+                    isoCode,
+                    name
+                }));
+                const [{ isoCode: firstCountry } = {}] = allCountries;
+                setCountries(allCountries);
+                setSelectedCountry(firstCountry);
+                setIsLoading(false);
+            } catch (error) {
+                setCountries([]);
+                setIsLoading(false);
+            };
         };
+        
         getCountries();
     }, []);
 
