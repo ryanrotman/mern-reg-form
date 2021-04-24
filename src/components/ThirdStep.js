@@ -88,6 +88,27 @@ const ThirdStep = (props) => {
                         ))}
                     </Form.Control>
                 </Form.Group>
+                <Form.Group controlId="state">
+                    <Form.Label>State</Form.Label>
+                    <Form.Control
+                        as="select"
+                        name="state"
+                        value={selectedState}
+                        onChange={(event) => setSelectedState(event.target.value)}
+                    >
+                        {states.length > 0 ? (
+                            states.map(({ isoCode, name }) => (
+                                <option value={isoCode} key={isoCode}>
+                                    {name}
+                                </option>
+                            ))
+                        ) : (
+                            <option value="" key="">
+                                No state found
+                            </option>
+                        )}
+                    </Form.Control>
+                </Form.Group>
             </div>
         </Form>
     );
