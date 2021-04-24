@@ -40,7 +40,6 @@ const ThirdStep = (props) => {
     useEffect(() => {
         const getStates = async () => {
             try {
-                setIsLoading(true);
                 const result = await csc.getStatesOfCountry(selectedCountry);
                 let allStates = [];
                 allStates = result?.map(({ isoCode, name }) => ({
