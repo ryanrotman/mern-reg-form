@@ -23,6 +23,7 @@ const FirstStep = (props) => {
                 className="col-md-6 offset-md-3"
                 initial={{ x: "-100vw" }}
                 animate={{ x: "0" }}
+                transition={{ stiffness: 150 }}
             >
                 <Form.Group controlId="first_name">
                     <Form.Label>First Name</Form.Label>
