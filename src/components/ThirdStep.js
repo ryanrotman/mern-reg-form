@@ -4,6 +4,7 @@ import csc from "country-state-city";
 import axios from "axios";
 import { BASE_API_URL } from "../utils/constants";
 import { motion } from "framer-motion";
+import Swal from "sweetalert2";
 
 const ThirdStep = (props) => {
     const [countries, setCountries] = useState([]);
@@ -105,8 +106,21 @@ const ThirdStep = (props) => {
                 ...user,
                 ...updatedData
             });
+
+            Swal.fire("Awesome!", "You're successfully registered!", "success").then(
+                (result) => {
+                    if (result.isConfirmed || result.isDismissed) {
+                        props.history.push("/")
+                    }
+                }
+            );
         } catch (error) {
             if (error.response) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: error.response.data
+                });
                 console.log("error", error.response.data);
             }
         }
